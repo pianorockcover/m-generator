@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <pre id="output"></pre>
+    <hr>
+    <textarea id="source" style="width: 500px;" cols="30" rows="10"></textarea>
+
+    <script id="func">
+        function generate1() {
+            const notes = [["E2", null, null, null], ["E2", null, null, null], ["E2", null, "E2", null], ["E2", null, "E2", null], [null, null, null, null], ["E2", "E2", "E2", "E2"], [null, null, "C3", null], ["E2", null, null, null]];
+            return notes;
+        }
+    </script>
+    <script>
+        const foo = generate1;
+    </script>
+
+    <!-- Output -->
+    <script>
+        document.getElementById("output").innerHTML = String(foo());
+
+        const func = document.getElementById("func").innerHTML.replace(new RegExp("[\t\n ]", "g"), "").replace(new RegExp("\"", "g"), "'")
+            .replace(new RegExp("function", "g"), "function ")
+            .replace(new RegExp("return", "g"), "return ")
+            .replace(new RegExp("const", "g"), "const ")
+            .trim();
+        document.getElementById("source").innerHTML = String(`(${func})()`);
+    </script>
+</body>
+
+</html>
